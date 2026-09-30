@@ -1,0 +1,39 @@
+{
+  "seed": 42,
+  "budget": {
+    "max_params": null,
+    "max_cost": null
+  },
+  "runtime_metric": "proxy",
+  "selection": "balanced",
+  "selected": {
+    "layers": [
+      8
+    ],
+    "activation": "relu",
+    "lr": 0.03,
+    "val_accuracy": 0.788,
+    "params": 195,
+    "found_in_generation": 10
+  },
+  "holdout": {
+    "test_accuracy": 0.794,
+    "cost_s": 0.033345,
+    "params": 195
+  },
+  "latency": {
+    "batch_ms_per_1k": 0.9878679998109874,
+    "single_p50_ms": 0.342080499876829,
+    "single_p95_ms": 0.4639782499793904,
+    "repeats": 200
+  },
+  "timing": {
+    "total_s": 58.895,
+    "training_s": 58.701,
+    "training_share": 0.997
+  },
+  "trainings": 181,
+  "cache_hits": 1,
+  "disk_cache_hits": 0,
+  "final_hypervolume": 0.7874
+}

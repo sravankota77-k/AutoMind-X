@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AutoMind-X report</title><style>
+body{font:18px/1.6 system-ui,sans-serif;max-width:60rem;margin:0 auto;padding:1rem;color:#111;background:#fff}
+a{color:#0033cc}.skip{position:absolute;left:-999px}.skip:focus{left:0;background:#ffd;padding:.5rem}
+table{border-collapse:collapse;width:100%}th,td{border:1px solid #444;padding:.35rem .5rem;text-align:left}
+caption{font-weight:bold;text-align:left;padding:.4rem 0}pre{background:#f3f3f3;padding:1rem;overflow-x:auto}
+figure{margin:1.5rem 0}img{max-width:100%;height:auto}:focus-visible{outline:3px solid #b30000;outline-offset:2px}
+</style></head><body>
+<a class="skip" href="#main">Skip to main content</a>
+<header><h1>AutoMind-X report</h1>
+<nav aria-label="Sections"><a href="#selected">Selected model</a> | <a href="#front">Pareto finalists</a> |
+<a href="#figures">Figures</a> | <a href="#explanation">Full explanation</a></nav></header>
+<main id="main">
+<section id="selected"><h2>Selected model</h2>
+<p><strong>8 | relu | lr=0.03</strong> - validation accuracy 0.788,
+195 parameters, found in generation 10. The Pareto archive holds
+18 non-dominated architectures out of 181 tried.</p>
+<pre>
+HOLD-OUT TEST (data the evolution never saw)
+  AutoMind-X  8 | relu | lr=0.03         test acc=0.794  cost=  33.3 ms  params=195
+  Baseline    100 | relu | lr=0.001      test acc=0.814  cost=1059.7 ms  params=2403
+  -&gt; x0.08 parameters, x0.03 training cost, accuracy -0.020 vs baseline
+
+INFERENCE LATENCY (edge-deployment view, this machine)
+  AutoMind-X  batch   0.99 ms / 1000 samples | single sample p50 0.342 ms, p95 0.464 ms
+  Baseline    batch   1.19 ms / 1000 samples | single sample p50 0.273 ms, p95 0.451 ms</pre></section>
+<section id="front"><h2>Pareto-optimal finalists</h2>
+<table><caption>Finalists sorted by validation accuracy (cost in milliseconds of estimated training)</caption>
+<thead><tr><th scope="col">Architecture</th><th scope="col">Accuracy</th><th scope="col">Cost (ms)</th>
+<th scope="col">Parameters</th></tr></thead><tbody><tr><th scope='row'>128 | tanh | lr=0.03</th><td>0.856</td><td>608.9</td><td>3075</td></tr><tr><th scope='row'>16-16 | tanh | lr=0.03</th><td>0.854</td><td>136.4</td><td>659</td></tr><tr><th scope='row'>16-4-4-4 | relu | lr=0.03</th><td>0.844</td><td>157.0</td><td>459</td></tr><tr><th scope='row'>16 | relu | lr=0.03</th><td>0.838</td><td>76.6</td><td>387</td></tr><tr><th scope='row'>8-4 | relu | lr=0.03</th><td>0.800</td><td>43.4</td><td>219</td></tr><tr><th scope='row'>8 | relu | lr=0.01</th><td>0.792</td><td>49.1</td><td>195</td></tr><tr><th scope='row'>8 | relu | lr=0.03</th><td>0.788</td><td>33.3</td><td>195</td></tr><tr><th scope='row'>4-8 | tanh | lr=0.03</th><td>0.788</td><td>58.4</td><td>151</td></tr><tr><th scope='row'>4-4-4 | tanh | lr=0.01</th><td>0.768</td><td>53.8</td><td>139</td></tr><tr><th scope='row'>4-4-4-4 | tanh | lr=0.03</th><td>0.752</td><td>25.8</td><td>159</td></tr><tr><th scope='row'>4-4 | tanh | lr=0.03</th><td>0.722</td><td>22.5</td><td>119</td></tr><tr><th scope='row'>4 | logistic | lr=0.01</th><td>0.604</td><td>11.6</td><td>99</td></tr><tr><th scope='row'>4 | tanh | lr=0.01</th><td>0.542</td><td>10.7</td><td>99</td></tr><tr><th scope='row'>4 | tanh | lr=0.03</th><td>0.538</td><td>8.9</td><td>99</td></tr></tbody></table></section>
+<section id="figures"><h2>Figures</h2><figure><img src='convergence.png' alt='Two line charts over 12 generations. Left: best fitness rises from 0.336 to 0.444 while hypervolume goes from 0.581 to 0.787. Right: mean mutation-rate gene goes from 0.350 to 0.326; the population multiplier ends at 2.50.'><figcaption>Two line charts over 12 generations. Left: best fitness rises from 0.336 to 0.444 while hypervolume goes from 0.581 to 0.787. Right: mean mutation-rate gene goes from 0.350 to 0.326; the population multiplier ends at 2.50.</figcaption></figure><figure><img src='fitness.png' alt='Best, mean and worst fitness per generation with individual population members as grey dots. Best fitness ends at 0.444, mean at 0.388, worst at 0.211.'><figcaption>Best, mean and worst fitness per generation with individual population members as grey dots. Best fitness ends at 0.444, mean at 0.388, worst at 0.211.</figcaption></figure><figure><img src='accuracy_vs_runtime.png' alt='Scatter of 181 evaluated architectures (validation accuracy vs training cost), coloured by generation discovered. A dashed line joins the 18 Pareto-optimal points. A star marks the selected model: 8 | relu | lr=0.03 with accuracy 0.788.'><figcaption>Scatter of 181 evaluated architectures (validation accuracy vs training cost), coloured by generation discovered. A dashed line joins the 18 Pareto-optimal points. A star marks the selected model: 8 | relu | lr=0.03 with accuracy 0.788.</figcaption></figure><figure><img src='pareto_front.png' alt='Four panels showing the three-objective trade-off (accuracy, cost, parameters). Grey circles are dominated architectures, diamonds are the 18 Pareto-optimal ones, the star is the selected model with 195 parameters.'><figcaption>Four panels showing the three-objective trade-off (accuracy, cost, parameters). Grey circles are dominated architectures, diamonds are the 18 Pareto-optimal ones, the star is the selected model with 195 parameters.</figcaption></figure></section>
+<section id="explanation"><h2>Full explanation</h2><pre>==============================================================================
+AUTOMIND-X  |  WHY THIS ARCHITECTURE WAS SELECTED
+==============================================================================
+
+SELECTED: 8 | relu | lr=0.03                 acc=0.788  cost=   33.3 ms  params=   195
+          discovered in generation 10
+
+[1] WHY IT QUALIFIES
+  - It is Pareto-optimal: none of the 181 architectures tried is better in all three
+    objectives at once. It strictly dominates 65 of them.
+  - Among the 14 Pareto-optimal finalists it is chosen for the best balanced score:
+      score = 0.473 (accuracy x0.6) - 0.022 (time penalty) - 0.007 (size penalty) = 0.444
+      accuracy     rank 7 of 14 finalists
+      speed        rank 6 of 14 finalists
+      compactness  rank 8 of 14 finalists
+
+[2] TRADE-OFFS vs OTHER FINALISTS (what you would give up / gain by picking them)
+  - most accurate : 128 | tanh | lr=0.03  -&gt;  accuracy +0.068, runtime x18.26, params x15.77
+  - fastest       : 4 | tanh | lr=0.03  -&gt;  accuracy -0.250, runtime x0.27, params x0.51
+  - smallest      : 4 | tanh | lr=0.03  -&gt;  accuracy -0.250, runtime x0.27, params x0.51
+
+[3] COMPARISON WITH PREVIOUS GENERATIONS (best balanced individual of each generation)
+  gen  0: 16-16 | relu | lr=0.01             acc=0.854  cost=  231.3 ms  params=   659  fit=+0.336
+  gen  3: 8-4 | relu | lr=0.03               acc=0.800  cost=   43.4 ms  params=   219  fit=+0.444
+  gen  6: 8-4 | relu | lr=0.03               acc=0.800  cost=   43.4 ms  params=   219  fit=+0.444
+  gen  9: 8-4 | relu | lr=0.03               acc=0.800  cost=   43.4 ms  params=   219  fit=+0.444
+  gen 12: 8 | relu | lr=0.03                 acc=0.788  cost=   33.3 ms  params=   195  fit=+0.444
+  vs generation 0 best : accuracy -0.066, runtime x0.14, params x0.30, fitness +0.108
+  vs previous generation: accuracy +0.000, runtime x1.00, params x1.00, fitness +0.000
+  Pareto quality (hypervolume): 0.581 -&gt; 0.787   | mean accuracy of population: 0.701 -&gt; 0.749
+
+[4] HOW IT EVOLVED (ancestry through the fitter parent)
+  gen  0: 4 | tanh | lr=0.03                 random init
+  gen  3: 8-4 | relu | lr=0.03               crossover; activation logistic-&gt;relu
+  gen  6: 16 | relu | lr=0.03                crossover; remove layer 2 (4 neurons)
+  gen  7: 4-8 | relu | lr=0.03               crossover; resize layer 3: 16-&gt;8; remove layer 2 (4 neurons)
+  gen 10: 8 | relu | lr=0.03                 crossover; remove layer 2 (8 neurons); resize layer 1: 4-&gt;8
+
+[5] WHAT THE SEARCH LEARNED (across all architectures tried)
+  activation logistic : tried  52, mean acc 0.717, on Pareto front 2
+  activation relu     : tried  68, mean acc 0.790, on Pareto front 8
+  activation tanh     : tried  61, mean acc 0.769, on Pareto front 8
+  1 hidden layer(s)   : tried  24, mean acc 0.749, on Pareto front 8
+  2 hidden layer(s)   : tried  58, mean acc 0.758, on Pareto front 6
+  3 hidden layer(s)   : tried  64, mean acc 0.766, on Pareto front 2
+  4 hidden layer(s)   : tried  35, mean acc 0.770, on Pareto front 2
+
+[6] META-EVOLUTION (self-adaptive mutation)
+  - population multiplier ranged 0.61..2.50; 9 generations triggered EXPLORE (stagnation -&gt; mutate more), 3 triggered EXPLOIT (improvement -&gt; mutate less).
+  - mean evolved mutation-rate gene: 0.350 -&gt; 0.326; selected model carries gene = 0.235</pre></section>
+</main></body></html>

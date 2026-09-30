@@ -1,0 +1,14 @@
+seed 0: evo HV 0.7966 rnd HV 0.7385 trainings 182 (112s)
+seed 1: evo HV 0.7703 rnd HV 0.7592 trainings 182 (205s)
+seed 2: evo HV 0.7530 rnd HV 0.7504 trainings 182 (297s)
+seed 3: evo HV 0.7452 rnd HV 0.7021 trainings 182 (397s)
+seed 4: evo HV 0.7289 rnd HV 0.7100 trainings 182 (494s)
+seed 5: evo HV 0.7342 rnd HV 0.7438 trainings 182 (607s)
+seed 6: evo HV 0.7582 rnd HV 0.7603 trainings 182 (700s)
+seed 7: evo HV 0.7973 rnd HV 0.7895 trainings 182 (797s)
+EQUAL-BUDGET COMPARISON vs RANDOM SEARCH  (8 seeds, ~182 trainings per method)
+  metric          AutoMind-X    random   mean diff   95% CI            W/T/L
+  hypervolume         0.7605    0.7442     +0.0163   [+0.0027, +0.0325]  6/0/2
+  best_fitness        0.4399    0.4384     +0.0015   [-0.0049, +0.0078]  3/2/3
+  best_accuracy       0.8665    0.8622     +0.0043   [-0.0015, +0.0103]  6/0/2
+  -> hypervolume verdict: AutoMind-X is significantly better (paired bootstrap, CI excludes 0 = significant)
